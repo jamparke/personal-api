@@ -14,12 +14,12 @@ module.exports = {
   },
   getOccupation: function (req, res, next) {
     var userOcc = { occupations: user.occupations }
-    if (req.query.order == 'desc') {
+    if (req.query.order === 'desc') {
       userOcc = user.occupations.sort(function (a, b) {
         return a.localeCompare(b)
       })
       res.json(userOcc)
-    } else if (req.query.order == 'asc') {
+    } else if (req.query.order === 'asc') {
       userOcc = user.occupations.sort(function (a, b) {
         return a.localeCompare(b)
       })
@@ -37,7 +37,7 @@ module.exports = {
     res.json(userHobbies)
   },
   getHobby: function (req, res, next) {
-    var userHobbies = { hobbies: user.hobbies }
+    // var userHobbies = { hobbies: user.hobbies }
     // console.log(userHobbies);
     const filtered = user.hobbies.filter(function (hobby) {
       console.log(hobby.type.toLowerCase())

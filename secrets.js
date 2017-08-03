@@ -1,6 +1,6 @@
 const secrets = {
-  username: 'lolp',
-  pin: 'jkhjkgkgf'
+  username: 'Andy',
+  pin: 'parker'
 }
 
 module.exports = secrets

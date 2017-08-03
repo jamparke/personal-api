@@ -1,24 +1,31 @@
+// vars
 const express = require('express')
 const bodyParser = require('body-parser')
-
+let middleware = require('./controllers/middleware.js')
+let mainCtrl = require('./controllers/mainCtrl.js')
+// init
 const app = express()
-
-// controllers
-var middleware = require('./controllers/middleware.js')
-var mainCtrl = require('./controllers/mainCtrl.js')
-
-// middleware
 app.use(bodyParser.json())
 app.use(middleware.addHeaders)
-
-// endpoints
-app.get('/api/user/name', mainCtrl.getName)
-app.get('/api/user/location', mainCtrl.getLocation)
-app.get('/api/user/occupations', mainCtrl.getAllOccupations)
-app.get('/api/user/occupations/latest', mainCtrl.getLatestOccupation)
-app.get('/api/user/hobbies', mainCtrl.hobbies)
-app.get('/api/user/hobbies/:type', mainCtrl.hobbies)
-
+// exitpoints
+app.get('/name', mainCtrl.getName)
+app.get('/location', mainCtrl.getLocation)
+app.get('/occupations', mainCtrl.getOccupation)
+app.get('/occupations/latest', mainCtrl.getOccLate)
+app.get('/hobbies', mainCtrl.getHobbies)
+app.get('/hobby/:type', mainCtrl.getHobby)
+app.get('/family/:gender', mainCtrl.getFamily)
+app.get('/restaurants/:name', mainCtrl.getRestaurants)
+app.put('/name/', mainCtrl.updateName)
+app.put('/location/', mainCtrl.updateLocation)
+app.post('/hobbies/', mainCtrl.addHobby)
+app.post('/occupations', mainCtrl.addOccupation)
+app.post('/family/', mainCtrl.addFamily)
+app.post('/restaurants/', mainCtrl.addRestaurant)
+app.get('/skillz', mainCtrl.getSkillz)
+app.post('/skillz/', mainCtrl.addSkillz)
+app.get('/secrets/:username/:pin', middleware.verifyUser, mainCtrl.getSecrets)
+// Listen
 app.listen(3000, function () {
-  console.log('Listening on port 3000')
+  console.log('currently on port 3000')
 })
